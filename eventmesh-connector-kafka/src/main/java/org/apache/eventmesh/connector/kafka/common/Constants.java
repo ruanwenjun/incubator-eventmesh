@@ -15,8 +15,11 @@
  * limitations under the License.
  */
 
-dependencies {
-    implementation project(":eventmesh-runtime"), project(":eventmesh-connector-rocketmq"), project(":eventmesh-connector-kafka")
-    testImplementation project(":eventmesh-runtime"), project(":eventmesh-connector-rocketmq"), project(":eventmesh-connector-kafka")
-    //testImplementation group: 'junit', name: 'junit', version: '4.12'
+package org.apache.eventmesh.connector.kafka.common;
+
+public enum Constants {
+    ;
+    public static final String EVENTMESH_CONF_HOME = System.getProperty("confPath", System.getenv("confPath"));
+
+    public static final String KAFKA_CONF_FILE = "kafka-client.properties";
 }

@@ -15,8 +15,26 @@
  * limitations under the License.
  */
 
+configurations {
+    implementation.exclude group: 'ch.qos.logback', module: 'logback-classic'
+}
+
+List kafka = [
+        "org.apache.kafka:kafka-clients:$kafka_version",
+]
+
+List metrics = [
+        "io.dropwizard.metrics:metrics-core:4.1.0",
+        "io.dropwizard.metrics:metrics-healthchecks:4.1.0",
+        "io.dropwizard.metrics:metrics-annotation:4.1.0",
+        "io.dropwizard.metrics:metrics-json:4.1.0"
+]
+
+List open_message = [
+        "io.openmessaging:openmessaging-api:2.2.1-pubsub"
+]
+
 dependencies {
-    implementation project(":eventmesh-runtime"), project(":eventmesh-connector-rocketmq"), project(":eventmesh-connector-kafka")
-    testImplementation project(":eventmesh-runtime"), project(":eventmesh-connector-rocketmq"), project(":eventmesh-connector-kafka")
-    //testImplementation group: 'junit', name: 'junit', version: '4.12'
+    implementation kafka, metrics, open_message, project(":eventmesh-connector-api"), project(":eventmesh-common")
+    testImplementation kafka, metrics, open_message, project(":eventmesh-connector-api"), project(":eventmesh-common")
 }
